@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIZARD TRAVEL CLUB - A Luxury Travel Network</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Quiz Overlay - Shows on first visit -->
+    <div id="quiz-overlay" class="quiz-overlay">
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <h1>🌍 Discover Your Travel Archetype</h1>
+                <p>Take our quick quiz to personalize your luxury travel experience</p>
+            </div>
+            
+            <div id="quiz-content" class="quiz-content">
+                <div id="quiz-start" class="quiz-screen active">
+                    <div class="quiz-intro">
+                        <h2>Welcome to Wizard Travel Club</h2>
+                        <p>Before we show you our exclusive destinations and luxury experiences, let's discover your unique travel personality.</p>
+                        <p>This 12-question quiz will help us tailor your experience and connect you with like-minded travelers.</p>
+                        <div class="archetype-preview">
+                            <h3>Your Archetype Will Reveal:</h3>
+                            <ul>
+                                <li>Your ideal travel style and preferences</li>
+                                <li>Perfect destinations for your personality</li>
+                                <li>Travel companions who share your vibe</li>
+                                <li>Exclusive experiences tailored just for you</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button id="start-quiz-btn" class="btn-primary">Start Your Journey</button>
+                </div>
+
+                <div id="quiz-questions" class="quiz-screen">
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div id="quiz-progress-fill"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span id="current-question-num">1</span> of <span id="total-questions">12</span>
+                        </div>
+                    </div>
+                    
+                    <div class="question-container">
+                        <h2 id="question-text"></h2>
+                        <div id="options-container" class="options-grid"></div>
+                    </div>
+                    
+                    <div class="quiz-navigation">
+                        <button id="prev-question" class="btn-secondary" disabled>Previous</button>
+                        <button id="next-question" class="btn-primary" disabled>Next</button>
+                    </div>
+                </div>
+
+                <div id="quiz-results" class="quiz-screen">
+                    <div class="results-content">
+                        <h2>Your Travel Archetype</h2>
+                        <div id="archetype-result" class="archetype-display">
+                            <!-- Results will be populated here -->
+                        </div>
+                        <div class="archetype-benefits">
+                            <h3>What This Means for Your Travel Experience:</h3>
+                            <div id="archetype-benefits-list">
+                                <!-- Benefits will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    <button id="enter-site-btn" class="btn-primary">Enter Wizard Travel Club</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Website Content (hidden until quiz is completed) -->
+    <div id="main-website" class="main-website hidden">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>WIZARD TRAVEL CLUB</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#destinations">Explore Destinations</a></li>
+                    <li><a href="#plan">Plan Your Trip</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li id="travel-agent-nav" class="hidden"><a href="#travel-agent">Travel Agent Portal</a></li>
+                    <li class="dropdown">
+                        <a href="#membership">All Membership Info</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#store">Our Store</a></li>
+                            <li><a href="#forums">Forums</a></li>
+                            <li><a href="#education">Vacation Education</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#about">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#terms">Terms & Conditions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="nav-buttons">
+                    <div class="user-archetype">
+                        <span id="user-archetype-display"></span>
+                    </div>
+                    <button class="btn-login" id="login-btn">Log In</button>
+                    <button class="btn-logout hidden" id="logout-btn">Log Out</button>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>WIZARD TRAVEL CLUB</h1>
+                <h2>A LUXURY TRAVEL NETWORK</h2>
+                <p>Experience worry-free travel planning with exclusive luxury experiences</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">Plan Your Trip</button>
+                    <button class="btn-secondary">Explore</button>
+                </div>
+            </div>
+            <div class="hero-background"></div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits">
+            <div class="container">
+                <h2>Learn More About Our Membership Benefits</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-image">
+                            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Worldwide Travel">
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Experience Worry-Free Travel Planning</h3>
+                            <p>Welcome to WIZARD TRAVEL CLUB, where we elevate your travel experience to a level that makes you feel like a true VIP. Our commitment to providing a stress-free journey means you can focus on enjoying every moment of your vacation.</p>
+                            <button class="btn-outline">Worry free travel always</button>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-image">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Greece">
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Luxury Tailored Travel Experiences Designed Just For You</h3>
+                            <p>WIZARD TRAVEL CLUB is your gateway to experiencing luxury travel without the exorbitant price tag. Our members enjoy exclusive access to resort weeks, with prices as low as $300 for seven days in stunning hotels worldwide.</p>
+                            <button class="btn-outline">see the world with friends</button>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-image">
+                            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80" alt="Canal in Italy">
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Our Exclusive Travel Perks Are The Best In The Business</h3>
+                            <p>At WIZARD TRAVEL CLUB, luxury travel is not just an option; it's a lifestyle. We are dedicated to offering unparalleled travel experiences, complete with exclusive benefits that elevate your journeys to extraordinary heights.</p>
+                            <button class="btn-outline">plan your trip</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Destinations Section -->
+        <section id="destinations" class="destinations">
+            <div class="container">
+                <h2>Explore Destinations</h2>
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="https://images.unsplash.com/photo-1502602898534-47d3c0c4b0e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Paris">
+                        </div>
+                        <div class="destination-content">
+                            <h3>PARIS · FRANCE</h3>
+                            <p>Luxury Vacation</p>
+                            <span class="airport-code">CDG</span>
+                            <button class="btn-explore">Explore</button>
+                        </div>
+                    </div>
+
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Tokyo">
+                        </div>
+                        <div class="destination-content">
+                            <h3>TOKYO · JAPAN</h3>
+                            <p>Luxury Vacation</p>
+                            <span class="airport-code">NRT</span>
+                            <button class="btn-explore">Explore</button>
+                        </div>
+                    </div>
+
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Bali">
+                        </div>
+                        <div class="destination-content">
+                            <h3>BALI · INDONESIA</h3>
+                            <p>Luxury Vacation</p>
+                            <span class="airport-code">DPS</span>
+                            <button class="btn-explore">Explore</button>
+                        </div>
+                    </div>
+
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Tuscany">
+                        </div>
+                        <div class="destination-content">
+                            <h3>TUSCANY · ITALY</h3>
+                            <p>Luxury Vacation</p>
+                            <span class="airport-code">FLR</span>
+                            <button class="btn-explore">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations-cta">
+                    <button class="btn-primary">Explore All Destinations</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trip Packages Section -->
+        <section id="trip-packages" class="trip-packages">
+            <div class="container">
+                <div class="trip-packages-header">
+                    <h2>Featured Trip Packages</h2>
+                    <p>Discover amazing travel experiences curated by our expert travel agents</p>
+                </div>
+                
+                <div class="trip-packages-grid" id="trip-packages-grid">
+                    <!-- Trip packages will be populated here -->
+                </div>
+                
+                <div class="trip-packages-cta">
+                    <button class="btn-primary" onclick="wizardApp.showAllPackages()">View All Packages</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="community">
+            <div class="container">
+                <div class="community-header">
+                    <h2>Your Travel Community</h2>
+                    <p>Connect with fellow travelers who share your travel style and discover amazing experiences together</p>
+                </div>
+                
+                <div class="community-layout">
+                    <!-- Community Sidebar -->
+                    <div class="community-sidebar">
+                        <div class="user-profile">
+                            <div class="profile-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="profile-info">
+                                <h4 id="community-user-name">Traveler</h4>
+                                <span class="archetype-badge" id="community-user-archetype">Pathfinder</span>
+                            </div>
+                        </div>
+                        
+                        <div class="community-nav">
+                            <h4>Your Communities</h4>
+                            <div class="community-list" id="user-communities">
+                                <!-- Communities will be populated here -->
+                            </div>
+                            
+                            <h4>Discover Communities</h4>
+                            <div class="community-list" id="discover-communities">
+                                <!-- Other communities will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Content Area -->
+                    <div class="community-main">
+                        <div class="community-toolbar">
+                            <div class="sort-options">
+                                <button class="sort-btn active" data-sort="hot">Hot</button>
+                                <button class="sort-btn" data-sort="new">New</button>
+                                <button class="sort-btn" data-sort="top">Top</button>
+                            </div>
+                            <button class="btn-primary" id="create-post-btn">
+                                <i class="fas fa-plus"></i> Create Post
+                            </button>
+                        </div>
+                        
+                        <div class="posts-container" id="posts-container">
+                            <!-- Posts will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Travel Agent Section -->
+        <section id="travel-agent" class="travel-agent-section">
+            <div class="container">
+                <div class="travel-agent-header">
+                    <h2>Travel Agent Portal</h2>
+                    <p>Share your exclusive trip packages and connect with travelers</p>
+                </div>
+                
+                <div class="travel-agent-layout">
+                    <!-- Agent Dashboard -->
+                    <div class="agent-dashboard">
+                        <div class="agent-stats">
+                            <div class="stat-card">
+                                <h3>Total Packages</h3>
+                                <span id="total-packages">0</span>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Total Bookings</h3>
+                                <span id="total-bookings">0</span>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Revenue</h3>
+                                <span id="total-revenue">$0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="agent-actions">
+                            <button class="btn-primary" id="create-package-btn">
+                                <i class="fas fa-plus"></i> Create Trip Package
+                            </button>
+                            <button class="btn-secondary" id="view-bookings-btn">
+                                <i class="fas fa-calendar"></i> View Bookings
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Trip Packages Feed -->
+                    <div class="packages-feed">
+                        <div class="packages-header">
+                            <h3>Your Trip Packages</h3>
+                            <div class="package-filters">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="active">Active</button>
+                                <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+                                <button class="filter-btn" data-filter="completed">Completed</button>
+                            </div>
+                        </div>
+                        
+                        <div class="packages-container" id="packages-container">
+                            <!-- Trip packages will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Create Trip Package Modal -->
+        <div id="create-package-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Create Trip Package</h3>
+                    <button class="modal-close" id="close-package-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="create-package-form">
+                        <div class="form-group">
+                            <label for="package-title">Package Title</label>
+                            <input type="text" id="package-title" placeholder="e.g., Luxury Bali Adventure" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="package-destination">Destination</label>
+                            <input type="text" id="package-destination" placeholder="e.g., Bali, Indonesia" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="package-start-date">Start Date</label>
+                                <input type="date" id="package-start-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="package-end-date">End Date</label>
+                                <input type="date" id="package-end-date" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="package-price">Price per Person</label>
+                                <input type="number" id="package-price" placeholder="0" min="0" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="package-capacity">Max Capacity</label>
+                                <input type="number" id="package-capacity" placeholder="0" min="1" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="package-description">Package Description</label>
+                            <textarea id="package-description" placeholder="Describe the trip, activities, accommodations, etc..." rows="6" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="package-includes">What's Included</label>
+                            <textarea id="package-includes" placeholder="List what's included: flights, hotels, meals, activities, etc..." rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="package-image">Package Image URL</label>
+                            <input type="url" id="package-image" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" id="cancel-package">Cancel</button>
+                            <button type="submit" class="btn-primary">Create Package</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trip Package Details Modal -->
+        <div id="package-details-modal" class="modal">
+            <div class="modal-content package-details-content">
+                <div class="modal-header">
+                    <h3 id="package-details-title">Trip Package Details</h3>
+                    <button class="modal-close" id="close-package-details-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="package-details">
+                        <div class="package-image">
+                            <img id="package-details-image" src="" alt="Trip Package">
+                        </div>
+                        <div class="package-info">
+                            <div class="package-meta">
+                                <span class="destination" id="package-details-destination"></span>
+                                <span class="dates" id="package-details-dates"></span>
+                                <span class="price" id="package-details-price"></span>
+                            </div>
+                            <div class="package-description" id="package-details-description"></div>
+                            <div class="package-includes" id="package-details-includes"></div>
+                            <div class="package-agent" id="package-details-agent"></div>
+                        </div>
+                        <div class="package-booking">
+                            <h4>Book This Trip</h4>
+                            <form id="booking-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="booking-guests">Number of Guests</label>
+                                        <input type="number" id="booking-guests" min="1" value="1" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="booking-total">Total Price</label>
+                                        <input type="text" id="booking-total" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="booking-notes">Special Requests</label>
+                                    <textarea id="booking-notes" placeholder="Any special requests or dietary requirements..."></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn-secondary" id="cancel-booking">Cancel</button>
+                                    <button type="submit" class="btn-primary">Book Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Post Modal -->
+        <div id="create-post-modal" class="create-post-modal">
+            <div class="create-post-content">
+                <div class="create-post-header">
+                    <h3>Create a New Post</h3>
+                    <button class="close-modal" id="close-create-post-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="create-post-form">
+                    <div class="form-group">
+                        <label for="post-title">Post Title</label>
+                        <input type="text" id="post-title" placeholder="Enter your post title..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="post-content">Post Content</label>
+                        <textarea id="post-content" placeholder="Share your travel experience, tips, or questions..." rows="6" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="post-community">Select Community</label>
+                        <select id="post-community" required>
+                            <option value="">Choose a community...</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="cancel-create-post">Cancel</button>
+                        <button type="submit" class="btn-primary">Create Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <h2>Our Members Say it Best</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-info">
+                                <h4>Brianna Woodson</h4>
+                                <p>Bahamas & More</p>
+                                <p>Jewel Grande Montego Bay</p>
+                                <p>04-18-2024</p>
+                            </div>
+                            <div class="rating">
+                                <span>4.8 / 5</span>
+                            </div>
+                        </div>
+                        <p>"Where to start - it's been such an awesome experience working with The Wizard Travel Club. They are honest, fun, and knowledgeable. My trip to Jamaica was a dream and I appreciated the constant contact I had with them while I was there!"</p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-info">
+                                <h4>Samantha Kahner</h4>
+                                <p>Italy</p>
+                                <p>La Perscia Resort</p>
+                                <p>01-20-2022</p>
+                            </div>
+                            <div class="rating">
+                                <span>5.0 / 5</span>
+                            </div>
+                        </div>
+                        <p>"Wizard Travel Club takes its name to a complete new level. Imagine never spending a birthday alone again! With the Wizard Travel Club, you are GUARANTEED carefree, & PROMISED THE BEST services and activities anywhere you choose your destination to be."</p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-info">
+                                <h4>Martha Haynes</h4>
+                                <p>Italy</p>
+                                <p>Various (Multi City Trip)</p>
+                                <p>05-11-2023</p>
+                            </div>
+                            <div class="rating">
+                                <span>5.0 / 5</span>
+                            </div>
+                        </div>
+                        <p>"Wizard Travel Club - is always there when I needed them. From finding a great hotel room with all my special requests to assurances that she is available when traveling far from home! That is the key to a great travel agent."</p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-info">
+                                <h4>Lainya Bell</h4>
+                                <p>LA, DC, Bahamas, & more</p>
+                                <p>Various (Multi City)</p>
+                                <p>06-13-2022</p>
+                            </div>
+                            <div class="rating">
+                                <span>5.0 / 5</span>
+                            </div>
+                        </div>
+                        <p>"I absolutely love traveling with The Wizard Travel Club. They have THEEE BESTTT deals on travel and great offers. My boyfriend and I have taken multiple trips for really inexpensive prices. Highly recommend!!!!"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>YOUR NEXT ADVENTURE IS JUST AROUND THE CORNER!</h2>
+                <h3>Find Your Travel Tribe!</h3>
+                <p>With The Wizard Travel Club's exclusive travel network.</p>
+                <p>We believe that traveling is not just a hobby, it's a lifestyle. Join our exclusive community of passionate travelers and explore the world like never before!</p>
+                <p>Since our inception, we've crafted unforgettable experiences and fostered a community of like-minded adventurers. As a member, you'll partake in our exclusive events and connect with fellow wanderers who share your passion for exploration!</p>
+                <p>Take a look around & join us today!</p>
+                <button class="btn-primary">Plan Your Trip</button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Wizard Travel Club</h3>
+                        <p>Luxury Travel Network</p>
+                        <div class="newsletter">
+                            <h4>Get exclusive updates</h4>
+                            <p>Subscribe to our newsletter</p>
+                            <p>Sign up to our newsletter to receive the latest travel updates.</p>
+                            <form class="newsletter-form">
+                                <input type="email" placeholder="Email*" required>
+                                <button type="submit">SUBSCRIBE</button>
+                            </form>
+                            <p class="privacy-note">By subscribing, you agree to our Privacy Policy.</p>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#destinations">Explore Destinations</a></li>
+                            <li><a href="#plan">Plan Your Trip</a></li>
+                            <li><a href="#membership">All Membership Info</a></li>
+                            <li><a href="#about">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Membership</h4>
+                        <ul>
+                            <li><a href="#store">Our Store</a></li>
+                            <li><a href="#forums">Forums</a></li>
+                            <li><a href="#education">Vacation Education</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#terms">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2035 by Wizard Travel Club. Made with ❤️</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll to Top Button -->
+        <button class="scroll-to-top" id="scroll-to-top" title="Scroll to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <script src="quiz-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
